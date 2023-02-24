@@ -21,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("message", "Hello from MainActivity!");
+                intent.putExtra("text", "Hello from MainActivity!");
                 startActivity(intent);
             }
         });
     }
 }
+

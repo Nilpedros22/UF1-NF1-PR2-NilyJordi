@@ -4,21 +4,22 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private TextView messageTextView;
+    private SharedViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        //messageTextView = findViewById(R.id.message_text_view);
+        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
-        if (getIntent().getExtras() != null) {
-            String message = getIntent().getStringExtra("message");
-            messageTextView.setText(message);
-        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new FirstFragment())
+                .commit();
     }
 }
+
