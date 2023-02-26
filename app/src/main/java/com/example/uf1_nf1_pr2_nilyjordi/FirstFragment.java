@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 public class FirstFragment extends Fragment {
@@ -45,8 +46,9 @@ public class FirstFragment extends Fragment {
         });
 
         sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
-        sharedViewModel.getData().observe(getViewLifecycleOwner(), newData -> {
-                    DataReceived.setText(newData);
+
+        sharedViewModel.getData().observe(getViewLifecycleOwner(), newDataReceived -> {
+                    DataReceived.setText(newDataReceived);
                 }
         );
 
@@ -61,9 +63,6 @@ public class FirstFragment extends Fragment {
                 );
             }
         });
-
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-
         return view;
     }
 }

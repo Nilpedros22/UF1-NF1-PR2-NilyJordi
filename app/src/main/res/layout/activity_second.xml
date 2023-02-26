@@ -1,19 +1,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Activity 2"
-        android:layout_marginTop="20dp"
         android:textSize="24sp" />
 
     <FrameLayout
-        android:id="@+id/FL_ContentFragments"
+        android:id="@+id/ContentFragments"
         android:layout_width="match_parent"
         android:layout_height="500dp" />
+
+    <TextView
+        android:id="@+id/SharedData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ContentFragments"
+        android:background="#ddd"
+        android:padding="20dp"
+        android:text="Data Received" />
 
 </RelativeLayout>

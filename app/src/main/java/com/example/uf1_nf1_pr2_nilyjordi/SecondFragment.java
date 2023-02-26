@@ -21,7 +21,9 @@ public class SecondFragment extends Fragment {
     private Button sendDataButton;
     private DatabaseReference databaseReference;
     private TextView DataReceived2;
-    private SharedViewModel sharedViewModel;
+    private SharedViewModel sharedViewModel2;
+    private EditText DataToSend2;
+    private Button SendData2;
 
     public SecondFragment() {
         // Required empty public constructor
@@ -35,15 +37,30 @@ public class SecondFragment extends Fragment {
 
         dataEditText = view.findViewById(R.id.data_edit_text);
         sendDataButton = view.findViewById(R.id.send_data_button);
-        DataReceived2 = view.findViewById(R.id.DataReceived);
+        DataReceived2 = view.findViewById(R.id.DataReceived2);
+        DataToSend2 = view.findViewById(R.id.DataToSend2);
+        SendData2 = view.findViewById(R.id.SendData2);
 
-        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
-        sharedViewModel.getData().observe(getViewLifecycleOwner(), newData -> {
-                    DataReceived2.setText(newData);
+        sharedViewModel2 = new ViewModelProvider(this).get(SharedViewModel.class);
+
+        sharedViewModel2.getData().observe(getViewLifecycleOwner(), newDataReceived -> {
+                    DataReceived2.setText(newDataReceived);
                 }
         );
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        SendData2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataReceived2.setText(
+                        DataToSend2.getText().toString()
+                );
+                sharedViewModel2.setData(
+                        DataToSend2.getText().toString()
+                );
+            }
+        });
 
         sendDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
