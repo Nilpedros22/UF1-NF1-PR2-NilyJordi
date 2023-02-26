@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,6 +20,8 @@ public class SecondFragment extends Fragment {
     private EditText dataEditText;
     private Button sendDataButton;
     private DatabaseReference databaseReference;
+    private TextView DataReceived2;
+    private SharedViewModel sharedViewModel;
 
     public SecondFragment() {
         // Required empty public constructor
@@ -31,6 +35,13 @@ public class SecondFragment extends Fragment {
 
         dataEditText = view.findViewById(R.id.data_edit_text);
         sendDataButton = view.findViewById(R.id.send_data_button);
+        DataReceived2 = view.findViewById(R.id.DataReceived);
+
+        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        sharedViewModel.getData().observe(getViewLifecycleOwner(), newData -> {
+                    DataReceived2.setText(newData);
+                }
+        );
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 

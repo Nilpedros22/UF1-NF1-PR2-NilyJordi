@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -8,7 +9,7 @@
         android:id="@+id/data_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter data" />
+        android:hint="Enter data Firebase" />
 
     <Button
         android:id="@+id/send_data_button"
@@ -16,6 +17,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:text="Send Data" />
+        android:text="Send Data Firebase" />
+
+    <TextView
+        android:id="@+id/DataReceived2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/send_data_button"
+        android:layout_marginTop="20dp"
+        android:background="#ddd"
+        android:padding="20dp"
+        android:text="Data Received" />
 
 </LinearLayout>
